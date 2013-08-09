@@ -62,7 +62,9 @@ else:
                                    ['rpm/upstart/diamond.conf']))
 
     # Support packages being called differently on different distros
-    if distro in ['centos', 'redhat']:
+    if os.getenv('VIRTUAL_ENV', False):
+	install_requires = ['configobj', 'psutil', ],
+    elif distro in ['centos', 'redhat']:
         install_requires = ['python-configobj', 'psutil', ],
     elif distro == 'debian':
         install_requires = ['python-configobj', 'python-psutil', ],
